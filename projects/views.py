@@ -13,7 +13,7 @@ projectsList = [
     'description': 'This is a project where I built out my portfolio'
     },
     {
-    'id': '1',
+    'id': '3',
     'title': "Social Network",
     'description': 'Awesome open source project I am still working on.'
     },
@@ -22,8 +22,13 @@ projectsList = [
 def projects(request):
     page = 'projects'
     number = 10
-    context = {'page': page, 'number': number}
+    context = {'page': page, 'number': number, 'projects': projectsList}
     return render(request, 'projects/projects.html', context)
 
 def project(request, pk):
-    return render(request, 'projects/single-project.html')
+    projectObj = None
+    for i in projectsList:
+        if i['id'] == pk:
+            projectObj = i
+
+    return render(request, 'projects/single-project.html', {'project': projectObj})
