@@ -15,5 +15,6 @@ def project(request, pk):
     return render(request, 'projects/single-project.html', {'project': projectObj, 'tags': tags})
 
 def createProject(request):
-    context = {}
+    form = ProjectForm()
+    context = {'form': form}
     return render(request, "projects/project_form.html", context)
